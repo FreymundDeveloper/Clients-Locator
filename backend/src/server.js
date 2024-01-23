@@ -1,68 +1,40 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const { Pool } = require('pg');
 const { calculateTotalDistance, generatePermutations } = require('./Utils/tspBuilder');
+const { pool, createTable } = require('./model/database');
 
 const app = express();
 const port = 3001;
 
-const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'postgres',
-    password: '13_mund_2',
-    port: 5432,
-});
-
 app.use(bodyParser.json());
 app.use(cors());
-
-async function createTable() {
-    try {
-      await pool.query(`
-            CREATE TABLE IF NOT EXISTS clients (
-                id SERIAL PRIMARY KEY,
-                name VARCHAR(255) NOT NULL,
-                email VARCHAR(255) NOT NULL,
-                phone VARCHAR(20),
-                latitude DOUBLE PRECISION,
-                longitude DOUBLE PRECISION
-            );
-      `);
-
-      console.log('Table "clients" created or already exists.');
-
-    } catch (error) {
-        console.error('Error creating table:', error);
-    }
-}
 
 createTable();
 
 app.get('/clients/route', async (req, res) => {
     try {
-      const result = await pool.query('SELECT id, latitude, longitude FROM clients');
-      const clients = result.rows;
+        const result = await pool.query('SELECT id, latitude, longitude FROM clients');
+        const clients = result.rows;
+    
+        const permutations = generatePermutations(clients.map(client => client.id));
+        let minDistance = Infinity;
+        let optimizedRoute = [];
   
-      const permutations = generatePermutations(clients.map(client => client.id));
-      let minDistance = Infinity;
-      let optimizedRoute = [];
-  
-      for (const permutation of permutations) {
-        const route = permutation.map(clientId => clients.find(client => client.id === clientId));
-        const distance = calculateTotalDistance(route);
-  
-        if (distance < minDistance) {
-          minDistance = distance;
-          optimizedRoute = route;
+        for (const permutation of permutations) {
+            const route = permutation.map(clientId => clients.find(client => client.id === clientId));
+            const distance = calculateTotalDistance(route);
+    
+            if (distance < minDistance) {
+                minDistance = distance;
+                optimizedRoute = route;
+            }
         }
-      }
-  
-      res.json({ optimizedRoute, minDistance });
+    
+        res.json({ optimizedRoute, minDistance });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
   });
 

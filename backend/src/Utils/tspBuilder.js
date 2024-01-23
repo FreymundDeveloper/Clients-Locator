@@ -4,11 +4,11 @@ function calculateDistance(latitudeOne, longitudeOne, latitudeTwo, longitudeTwo)
     const distanceLatitude = (latitudeTwo - latitudeOne) * (Math.PI / 180);
     const distanceLongitude = (longitudeTwo - longitudeOne) * (Math.PI / 180);
 
-    const formulaHaversine  =
+    const formulaHaversine =
         Math.sin(distanceLatitude / 2) * Math.sin(distanceLatitude / 2) +
         Math.cos(latitudeOne * (Math.PI / 180)) * Math.cos(latitudeTwo * (Math.PI / 180)) * Math.sin(distanceLongitude / 2) * Math.sin(distanceLongitude / 2);
 
-    const arcTangent = 2 * Math.atan2(Math.sqrt(formulaHaversine ), Math.sqrt(1 - formulaHaversine ));
+    const arcTangent = 2 * Math.atan2(Math.sqrt(formulaHaversine), Math.sqrt(1 - formulaHaversine));
 
     const distance = EARTHRAY * arcTangent;
     return distance;
