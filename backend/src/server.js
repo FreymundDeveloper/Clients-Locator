@@ -40,14 +40,31 @@ async function createTable() {
 createTable();
 
 app.get('/clients', async (req, res) => {
+    const searchTerm = req.query.search || '';
+  
     try {
-        const result = await pool.query('SELECT * FROM clients');
+        let result;
+
+        if (searchTerm.trim() === '') {
+            result = await pool.query('SELECT * FROM clients');
+        } else {
+            result = await pool.query(
+                `SELECT * FROM clients
+                WHERE name ILIKE $1
+                    OR email ILIKE $1
+                    OR latitude::TEXT ILIKE $1
+                    OR longitude::TEXT ILIKE $1
+                    OR phone ILIKE $1`,
+                [`%${searchTerm}%`]
+            );
+        }
+
         res.json(result.rows);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
-});
+});  
 
 app.post('/clients', async (req, res) => {
     const { name, email, phone, latitude, longitude } = req.body;
