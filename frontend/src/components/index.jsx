@@ -5,4 +5,5 @@ export * from './Container/ContainerSearch';
 export * from './Form/FormRegister';
 export * from './Input/InputForm';
 export * from './Input/InputSearch';
+export * from './Table/TableUsers';
 export * from './Text/Title';
