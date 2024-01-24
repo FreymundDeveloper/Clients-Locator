@@ -14,29 +14,12 @@ export const Home = () => {
         },
         {
             id: 2,
-            name: "Baile Val",
-            email: "blv@mail.com",
-            latitude: -32.788447,
-            longitude: -54.654066,
-            phone: "+56995086469"
-        },
-        {
-            id: 3,
-            name: "Baile Val",
-            email: "blv@mail.com",
-            latitude: -32.788447,
-            longitude: -54.654066,
-            phone: "+56995086469"
-        },
-        {
-            id: 4,
-            name: "Baile Val",
-            email: "blv@mail.com",
+            name: "Jovarrals Vallindiwovh",
+            email: "jv@mail.com",
             latitude: -32.788447,
             longitude: -54.654066,
             phone: "+56995086469"
         }
-
     ]
 
     return (
