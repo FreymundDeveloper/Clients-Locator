@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Title, ButtonAction, InputForm } from "../../components";
 
-// Começe o dia externelizando o input
 export const FormRegister = (props) => {
     const { user, updateField, save } = props;
 
@@ -12,14 +11,14 @@ export const FormRegister = (props) => {
                 <Col width="50%">
                     <FormGroup>
                         <Title size="form">Name</Title>
-                        <InputForm name="name" value={user.name} onChange={(event) => updateField(event)} placeholder="Enter a name..." />
+                        <InputForm format="text" name="name" value={user.name} onChange={(event) => updateField(event)} placeholder="Enter a name..." />
                     </FormGroup>
                 </Col>
 
                 <Col width="50%">
                     <FormGroup>
                         <Title size="form">Email</Title>
-                        <InputForm name="email" value={user.email} onChange={(event) => updateField(event)} placeholder="Enter an email..." />
+                        <InputForm format="email" name="email" value={user.email} onChange={(event) => updateField(event)} placeholder="Enter an email..." />
                     </FormGroup>
                 </Col>
             </Row>
@@ -28,21 +27,21 @@ export const FormRegister = (props) => {
                 <Col width="40%">
                     <FormGroup>
                         <Title size="form">Phone Number</Title>
-                        <InputForm name="phoneNumber" value={user.phoneNumber} onChange={(event) => updateField(event)} placeholder="Enter a phone number..." />
+                        <InputForm format="number" name="phoneNumber" value={user.phoneNumber} onChange={(event) => updateField(event)} placeholder="Enter a phone number..." />
                     </FormGroup>
                 </Col>
 
                 <Col width="30%">
                     <FormGroup>
                         <Title size="form">Latitude</Title>
-                        <InputForm name="latitude" value={user.latitude} onChange={(event) => updateField(event)} placeholder="Enter latitude..." />
+                        <InputForm format="number" name="latitude" value={user.latitude} onChange={(event) => updateField(event)} placeholder="Enter latitude..." />
                     </FormGroup>
                 </Col>
 
                 <Col width="30%">
                     <FormGroup>
                         <Title size="form">Longitude</Title>
-                        <InputForm name="longitude" value={user.longitude} onChange={(event) => updateField(event)} placeholder="Enter longitude..." />
+                        <InputForm format="number" name="longitude" value={user.longitude} onChange={(event) => updateField(event)} placeholder="Enter longitude..." />
                     </FormGroup>
                 </Col>
             </Row>
