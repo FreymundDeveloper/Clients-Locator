@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { Title, ButtonAction, InputForm } from "../../components";
 
+// Começe o dia externelizando o input
 export const FormRegister = (props) => {
     const { user, updateField, save } = props;
 
@@ -9,15 +11,15 @@ export const FormRegister = (props) => {
             <Row>
                 <Col width="50%">
                     <FormGroup>
-                        <Label>Name</Label>
-                        <Input type="text" name="name" value={user.name} onChange={(event) => updateField(event)} placeholder="Enter a name..." />
+                        <Title size="form">Name</Title>
+                        <InputForm name="name" value={user.name} onChange={(event) => updateField(event)} placeholder="Enter a name..." />
                     </FormGroup>
                 </Col>
 
                 <Col width="50%">
                     <FormGroup>
-                        <Label>Email</Label>
-                        <Input type="text" name="email" value={user.email} onChange={(event) => updateField(event)} placeholder="Enter an email..." />
+                        <Title size="form">Email</Title>
+                        <InputForm name="email" value={user.email} onChange={(event) => updateField(event)} placeholder="Enter an email..." />
                     </FormGroup>
                 </Col>
             </Row>
@@ -25,28 +27,28 @@ export const FormRegister = (props) => {
             <Row>
                 <Col width="40%">
                     <FormGroup>
-                        <Label>Phone Number</Label>
-                        <Input type="text" name="phoneNumber" value={user.phoneNumber} onChange={(event) => updateField(event)} placeholder="Enter a phone number..." />
+                        <Title size="form">Phone Number</Title>
+                        <InputForm name="phoneNumber" value={user.phoneNumber} onChange={(event) => updateField(event)} placeholder="Enter a phone number..." />
                     </FormGroup>
                 </Col>
 
                 <Col width="30%">
                     <FormGroup>
-                        <Label>Latitude</Label>
-                        <Input type="text" name="latitude" value={user.latitude} onChange={(event) => updateField(event)} placeholder="Enter latitude..." />
+                        <Title size="form">Latitude</Title>
+                        <InputForm name="latitude" value={user.latitude} onChange={(event) => updateField(event)} placeholder="Enter latitude..." />
                     </FormGroup>
                 </Col>
 
                 <Col width="30%">
                     <FormGroup>
-                        <Label>Longitude</Label>
-                        <Input type="text" name="longitude" value={user.longitude} onChange={(event) => updateField(event)} placeholder="Enter longitude..." />
+                        <Title size="form">Longitude</Title>
+                        <InputForm name="longitude" value={user.longitude} onChange={(event) => updateField(event)} placeholder="Enter longitude..." />
                     </FormGroup>
                 </Col>
             </Row>
 
             <FormActions>
-                <Button onClick={save}>Save</Button>
+                <ButtonAction onClick={save}>Save</ButtonAction>
             </FormActions>
         </FormWrapper>
     );
@@ -80,33 +82,6 @@ const Col = styled.div`
 
 const FormGroup = styled.div`
     margin-bottom: 5px;
-`;
-
-const Label = styled.label`
-    display: block;
-    font-size: 14px;
-    text-align: left;
-`;
-
-const Input = styled.input`
-    width: 100%;
-    padding: 10px;
-    font-size: 12px;
-    border: 1px solid #ccc;
-    border-radius: 14px;
-    box-sizing: border-box;
-`;
-
-const Button = styled.button`
-    background-color: ${(props) => props.theme.color.buttonColor};
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    margin-top: 10px;
-    margin-right: 10px;
-    border-radius: 14px;
-    cursor: pointer;
 `;
 
 const FormActions = styled.div`
