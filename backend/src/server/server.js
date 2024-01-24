@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const { createTable } = require('./model/database');
-const { getOptimizedRoute, getClients, postClient, deleteClient } = require('./controller/controller');
+const { createTable } = require('../model/database');
+const { getOptimizedRoute, getClients, postClient, deleteClient } = require('../controller/controller');
 
 const app = express();
 const port = 3001;
