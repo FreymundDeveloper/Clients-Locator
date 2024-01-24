@@ -1,9 +1,11 @@
 import React from 'react';
 //import axios from 'axios';
-import { ContainerHome } from '../components';
+import { ContainerHome, FormRegister } from '../components';
 
 export const Home = () => {
     return (
-        <ContainerHome>Test</ContainerHome>
+        <ContainerHome>
+            <FormRegister user={{}} updateField={() => {}} save={() => {}} />
+        </ContainerHome>
     );
 };

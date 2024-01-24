@@ -10,7 +10,7 @@ const StyledContainer = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;
+    width: 100vh;
     height: 100vh;
     margin: 0;
 `;
