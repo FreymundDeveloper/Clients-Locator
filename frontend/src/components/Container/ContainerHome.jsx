@@ -7,10 +7,10 @@ export const ContainerHome = ({ children }) => (
 
 const StyledContainer = styled.div`
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: flex-start;
     flex-direction: column;
     width: 100vh;
     height: 100vh;
-    margin: 0;
+    margin: 20px 0 0 0;
 `;

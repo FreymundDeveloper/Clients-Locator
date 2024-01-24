@@ -40,7 +40,7 @@ export const TableUsers = ({ list }) => {
 
 const Table = styled.table`
     width: 100%;
-    max-width: 98.664vh;
+    max-width: 98.45vh;
     margin: 0 auto;
     margin-top: 5px;
     border: 1px solid #ccc;
