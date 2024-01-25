@@ -9,11 +9,12 @@ const initialState = {
 export const Home = () => {
     const [state, setState] = useState({ ...initialState });
     const [userList, setUserList] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/clients');
+                const response = await axios.get(`http://localhost:3001/clients?search=${searchValue}`);
                 setUserList(response.data);
             } catch (error) {
                 console.error('Error fetching user data: ', error);
@@ -21,7 +22,7 @@ export const Home = () => {
         };
 
         fetchData();
-    }, []);
+    }, [searchValue]);
 
     const save = async () => {
         if (Object.values(state.user).some((value) => value === '')) {
@@ -54,10 +55,14 @@ export const Home = () => {
         setState({ user });
     };
 
+    const handleSearchChange = (newValue) => {
+        setSearchValue(newValue);
+    };
+
     return (
         <ContainerHome>
             <FormRegister user={state.user} updateField={(event) => updateField(event)} save={save} />
-            <InputSearch type="text" onSelectionChange={() => {}} onClick={() => {}} />
+            <InputSearch type="text" onSelectionChange={handleSearchChange} />
             <TableUsers list={userList} />
         </ContainerHome>
     );

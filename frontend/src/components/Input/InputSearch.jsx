@@ -3,20 +3,18 @@ import styled from 'styled-components';
 import { FiMap } from 'react-icons/fi';
 import { ButtonAction, ContainerSearch, ButtonSearch, Modal } from '../../components';
 
-export const InputSearch = ({ onSelectionChange, onClick }) => {
+export const InputSearch = ({ onSelectionChange }) => {
     const [searchValue, setSearchValue] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
 
     const handleInputChange = (event) => {
         const value = event.target.value;
         setSearchValue(value);
-
-        onSelectionChange(`name=${value}`);
     };
 
     const handleSearchButtonClick = (event) => {
         event.preventDefault();
-        onClick(); 
+        onSelectionChange(searchValue);
     };
 
     const openModal = (event) => {
