@@ -26,7 +26,9 @@ export const Modal = ({ isOpen, onClose }) => {
                 <ButtonClose onClose={onClose}></ButtonClose>
                 <Title size={"form"}>Shortest Service Route</Title>
                 <AboutContent>Travelled distance: {Test.minDistance.toFixed(2)} Km</AboutContent>
-                <TableRoute list={Test.optimizedRoute}></TableRoute>
+                <TableContainer>
+                    <TableRoute list={Test.optimizedRoute}></TableRoute>
+                </TableContainer>
             </ModalContent>
         </ModalWrapper>
     );
@@ -60,4 +62,9 @@ const AboutContent = styled.label`
     margin-top: 10px;
     color: white;
     text-align: left;
+`;
+
+const TableContainer = styled.div`
+    max-height: 30vh; 
+    overflow-y: auto; 
 `;
