@@ -7,29 +7,24 @@ export const InputForm = (props) => {
     const [isValid, setIsValid] = useState(true);
 
     const handleChange = (event) => {
-        const { value } = event.target;
+        onChange(event);
+    };
 
+    const handleBlur = () => {
         if (format === "email") {
-            if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || value.length === 0) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (value.length === 0 || emailRegex.test(value)) {
                 setIsValid(true);
-                onChange(event);
             } else {
                 setIsValid(false);
             }
-        } else {
-            onChange(event);
         }
     };
 
-    /*const handleBlur = () => {
-        if (format === "email" && !isValid) {
-            onChange({ target: { value: "" } });
-        }
-    };onBlur={handleBlur}*/
-
     return (
         <>
-            <StyledInput type={format} name={name} value={value} onChange={handleChange} placeholder={placeholder} />
+            <StyledInput type={format} name={name} value={value} onChange={handleChange} placeholder={placeholder} onBlur={handleBlur} />
             {!isValid && <ErrorMessage>Invalid Format.</ErrorMessage>}
         </>
     );

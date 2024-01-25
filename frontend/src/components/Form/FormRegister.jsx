@@ -27,7 +27,7 @@ export const FormRegister = (props) => {
                 <Col width="40%">
                     <FormGroup>
                         <Title size="form">Phone Number</Title>
-                        <InputForm format="number" name="phoneNumber" value={user.phoneNumber} onChange={(event) => updateField(event)} placeholder="Enter a phone number..." />
+                        <InputForm format="number" name="phone" value={user.phone} onChange={(event) => updateField(event)} placeholder="Enter a phone number (only numbers)..." />
                     </FormGroup>
                 </Col>
 
