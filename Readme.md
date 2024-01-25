@@ -8,7 +8,7 @@ Some technologies used:
 * Html;
 * CSS(Styled);
 * JavaScript;
-* PostgresSQL;
+* PostgreSQL;
 * Jest(Only Config);
 * Node;
 * Express.
@@ -23,7 +23,7 @@ The route is linked to the address "localhost:3001/products ...". The backend ru
 
 * Post: /clients - Body: { "name": "string", "email": "string","latitude": "number", "longitude": "number", "phone": "string" };
 
-* Delete: /clients/:id - Parameter: { id };
+* Delete: /clients/:id - Parameters: { id };
 
 ## Running the app
 
@@ -48,3 +48,5 @@ $ npm start
 # Go to "cd ./frontend". Then run:
 $ npm run test
 ```
+
+**Possible improvements**: Responsiveness, application of complete automated tests and integration of the Delete route with the interface.
