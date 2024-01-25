@@ -1,14 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ButtonClose, Title } from '../../components';
+import { ButtonClose, Title, TableRoute } from '../../components';
 
 export const Modal = ({ isOpen, onClose }) => {
+    const Test = {
+        "optimizedRoute": [
+            {
+                "id": 15,
+                "name": "Goid Val",
+                "latitude": -32.788447,
+                "longitude": -54.654066
+            },
+            {
+                "id": 16,
+                "name": "Baile Val",
+                "latitude": -32.788447,
+                "longitude": -54.654066
+            }
+        ],
+        "minDistance": 4022.822803401694
+    }
     return (
         <ModalWrapper isOpen={isOpen}>
             <ModalContent>
                 <ButtonClose onClose={onClose}></ButtonClose>
-                <Title size={"form"}>Shortest Route</Title>
-                <AboutContent>Travelled distance: {"000.00"}</AboutContent>
+                <Title size={"form"}>Shortest Service Route</Title>
+                <AboutContent>Travelled distance: {Test.minDistance.toFixed(2)} Km</AboutContent>
+                <TableRoute list={Test.optimizedRoute}></TableRoute>
             </ModalContent>
         </ModalWrapper>
     );
@@ -32,10 +50,11 @@ const ModalContent = styled.div`
     max-width: 70vh;
     padding: 20px;
     position: relative;
-    border-radius: 12px;
+    border-radius: 14px;
 `;
 
-const AboutContent = styled.h5`
+const AboutContent = styled.label`
+    display: block;
     font-size: 12px;
     margin-bottom: 10px;
     margin-top: 10px;

@@ -7,5 +7,6 @@ export * from './Form/FormRegister';
 export * from './Input/InputForm';
 export * from './Input/InputSearch';
 export * from './Modal/Modal';
+export * from './Table/TableRoute';
 export * from './Table/TableUsers';
 export * from './Text/Title';
