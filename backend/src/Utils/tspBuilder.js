@@ -17,6 +17,10 @@ function calculateDistance(latitudeOne, longitudeOne, latitudeTwo, longitudeTwo)
 function calculateTotalDistance(route) {
     let totalDistance = 0;
 
+    // Enter the company's coordinates here, by default in the Haversine formula the value is (0, 0).
+    const companyLatitude = -23.550520;
+    const companyLongitude = -46.633308;
+
     for (let index = 0; index < route.length - 1; index++) {
         const currentClient = route[index];
         const nextClient = route[index + 1];
@@ -25,7 +29,7 @@ function calculateTotalDistance(route) {
     }
 
     const lastClient = route[route.length - 1];
-    const distanceToCompany = calculateDistance(lastClient.latitude, lastClient.longitude, 0, 0);
+    const distanceToCompany = calculateDistance(lastClient.latitude, lastClient.longitude, companyLatitude, companyLongitude);
     totalDistance += distanceToCompany;
 
     return totalDistance;
