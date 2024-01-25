@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ContainerHome, FormRegister, InputSearch, TableUsers } from '../components';
 
@@ -8,24 +8,20 @@ const initialState = {
 
 export const Home = () => {
     const [state, setState] = useState({ ...initialState });
+    const [userList, setUserList] = useState([]);
 
-    const Test = [
-        {
-            id: 1,
-            name: "Baile Val",
-            email: "blv@mail.com",
-            latitude: -32.788447,
-            longitude: -54.654066,
-            phone: "+56995086469"
-        }
-    ]
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:3001/clients');
+                setUserList(response.data);
+            } catch (error) {
+                console.error('Error fetching user data: ', error);
+            }
+        };
 
-
-    const updateField = (event) => {
-        const user = { ...state.user };
-        user[event.target.name] = event.target.value;
-        setState({ user });
-    };
+        fetchData();
+    }, []);
 
     const save = async () => {
         if (Object.values(state.user).some((value) => value === '')) {
@@ -51,14 +47,18 @@ export const Home = () => {
             console.error('Error to created user: ', error);
         }
     };
-
-
+    
+    const updateField = (event) => {
+        const user = { ...state.user };
+        user[event.target.name] = event.target.value;
+        setState({ user });
+    };
 
     return (
         <ContainerHome>
             <FormRegister user={state.user} updateField={(event) => updateField(event)} save={save} />
             <InputSearch type="text" onSelectionChange={() => {}} onClick={() => {}} />
-            <TableUsers list={Test} />
+            <TableUsers list={userList} />
         </ContainerHome>
     );
 };
