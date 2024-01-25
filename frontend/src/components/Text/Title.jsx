@@ -7,6 +7,6 @@ export const Title = ({ size, children }) => {
 
 const StyledLabel = styled.label`
     display: block;
-    font-size: ${(props) => (props.size === "table" ? "12px" : "14px")};
+    font-size: ${(props) => (props.size === "table" ? "12px" : "16px")};
     text-align: left;
 `;

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FiMap } from 'react-icons/fi';
-import { ButtonAction, ContainerSearch, ButtonSearch } from '../../components';
+import { ButtonAction, ContainerSearch, ButtonSearch, Modal } from '../../components';
 
 export const InputSearch = ({ onSelectionChange, onClick }) => {
     const [searchValue, setSearchValue] = useState('');
+    const [modalOpen, setModalOpen] = useState(false);
 
     const handleInputChange = (event) => {
         const value = event.target.value;
@@ -18,7 +19,14 @@ export const InputSearch = ({ onSelectionChange, onClick }) => {
         onClick(); 
     };
 
-    const handleContainerButtonClick = () => {
+    const openModal = (event) => {
+        event.preventDefault();
+        setModalOpen(true);
+    };
+
+    const closeModal = (event) => {
+        event.preventDefault();
+        setModalOpen(false);
     };
 
     return (
@@ -28,8 +36,9 @@ export const InputSearch = ({ onSelectionChange, onClick }) => {
                 <ButtonSearch onClick={handleSearchButtonClick} />
             </InputContainer>
             <ButtonContainer>
-                <ButtonAction variant={"search"} onClick={handleContainerButtonClick}><FiMap /></ButtonAction>
+                <ButtonAction variant={"search"} onClick={openModal}><FiMap /></ButtonAction>
             </ButtonContainer>
+            <Modal isOpen={modalOpen} onClose={closeModal} />
         </ContainerSearch>
     );
 };
