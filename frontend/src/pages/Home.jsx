@@ -30,7 +30,7 @@ export const Home = () => {
             return;
         }
 
-        const numericFields = ['phone', 'latitude', 'longitude'];
+        const numericFields = ['latitude', 'longitude'];
 
         numericFields.forEach((field) => {
             if (state.user[field] !== '') {

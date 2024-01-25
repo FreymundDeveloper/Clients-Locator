@@ -3,11 +3,26 @@ import styled from "styled-components";
 
 export const InputForm = (props) => {
     const { format, name, value, onChange, placeholder } = props;
-
+    const maxLength = format === "number" ? 20 : undefined;
     const [isValid, setIsValid] = useState(true);
 
     const handleChange = (event) => {
-        onChange(event);
+        let newValue = event.target.value;
+
+        if (format === "number") {
+            if (maxLength && newValue.length > maxLength) return;
+
+            if (!isValidNumber(newValue)) return;
+            
+            if ((name === "latitude") && (newValue <= -90 || newValue >= 90)) return;
+            if ((name === "longitude") && (newValue <= -180 || newValue >= 180)) return;
+        }
+
+        onChange({ target: { name, value: newValue } });
+    };
+
+    const isValidNumber = (value) => {
+        return !isNaN(Number(value));
     };
 
     const handleBlur = () => {
