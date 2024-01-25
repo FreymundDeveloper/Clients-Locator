@@ -3,7 +3,7 @@ const { calculateTotalDistance, generatePermutations } = require('../Utils/tspBu
 const { isValidLatitude, isValidLongitude } = require('../Utils/gpsValidation');
 
 async function getOptimizedRoute() {
-    const result = await pool.query('SELECT id, latitude, longitude FROM clients');
+    const result = await pool.query('SELECT id, name, latitude, longitude FROM clients');
     const clients = result.rows;
 
     const permutations = generatePermutations(clients.map(client => client.id));
