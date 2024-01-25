@@ -47,7 +47,7 @@ export const FormRegister = (props) => {
             </Row>
 
             <FormActions>
-                <ButtonAction onClick={save}>Save</ButtonAction>
+                <ButtonAction onClick={save} disabled={!Object.values(user).every(value => value !== '')}>Save</ButtonAction>
             </FormActions>
         </FormWrapper>
     );

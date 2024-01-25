@@ -18,6 +18,7 @@ export const InputForm = (props) => {
                 setIsValid(true);
             } else {
                 setIsValid(false);
+                onChange({ target: { name, value: '' } });
             }
         }
     };

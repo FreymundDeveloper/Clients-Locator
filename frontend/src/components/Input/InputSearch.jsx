@@ -36,7 +36,7 @@ export const InputSearch = ({ onSelectionChange, onClick }) => {
                 <ButtonSearch onClick={handleSearchButtonClick} />
             </InputContainer>
             <ButtonContainer>
-                <ButtonAction variant={"search"} onClick={openModal}><FiMap /></ButtonAction>
+                <ButtonAction variant={"search"} onClick={openModal} disabled={false}><FiMap /></ButtonAction>
             </ButtonContainer>
             <Modal isOpen={modalOpen} onClose={closeModal} />
         </ContainerSearch>
