@@ -10,6 +10,8 @@ const columns = [
 ];
 
 export const TableRoute = ({ list }) => {
+    const hasData = list && list.length > 0;
+
     const renderRows = () => {
         return list.map((route, index) => (
             <TableRow key={route.id}>
@@ -23,7 +25,7 @@ export const TableRoute = ({ list }) => {
     };
 
     return (
-        <StyledTable>
+        <StyledTable hasData={hasData}>
             <TableHead>
                 <TableRow>
                     {columns.map((column) => (
@@ -43,7 +45,7 @@ const StyledTable = styled.table`
     max-width: 100%;
     margin: 0;
     border: 1px solid #ccc;
-    border-radius: 14px;
+    border-radius: ${(props) => (props.hasData ? "14px" : "14px 14px 0px 0px")};
     overflow-x: auto;
 `;
 

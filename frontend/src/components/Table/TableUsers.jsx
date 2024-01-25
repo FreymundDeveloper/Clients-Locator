@@ -12,6 +12,8 @@ const columns = [
 ];
 
 export const TableUsers = ({ list }) => {
+    const hasData = list && list.length > 0;
+    
     const renderRows = () => {
         return list.map((user, index) => (
             <TableRow key={user.id}>
@@ -23,7 +25,7 @@ export const TableUsers = ({ list }) => {
     };
 
     return (
-        <Table>
+        <Table hasData={hasData}>
             <TableHead>
                 <TableRow>
                     {columns.map((column) => (
@@ -44,7 +46,7 @@ const Table = styled.table`
     margin: 0 auto;
     margin-top: 5px;
     border: 1px solid #ccc;
-    border-radius: 0px 0px 14px 14px;
+    border-radius: ${(props) => (props.hasData ? "0px 0px 14px 14px" : "0px")};
 `;
 
 const TableHead = styled.thead`
