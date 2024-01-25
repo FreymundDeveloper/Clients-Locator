@@ -9,4 +9,5 @@ export * from './Input/InputSearch';
 export * from './Modal/Modal';
 export * from './Table/TableRoute';
 export * from './Table/TableUsers';
+export * from './Text/Loading';
 export * from './Text/Title';

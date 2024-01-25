@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { ContainerHome, FormRegister, InputSearch, TableUsers } from '../components';
+import { ContainerHome, FormRegister, InputSearch, TableUsers, Loading } from '../components';
 
 const initialState = {
     user: { name: '', email: '', phone: '', latitude: '', longitude: '' }
@@ -10,15 +10,18 @@ export const Home = () => {
     const [state, setState] = useState({ ...initialState });
     const [userList, setUserList] = useState([]);
     const [searchValue, setSearchValue] = useState('');
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true);
             try {
                 const response = await axios.get(`http://localhost:3001/clients?search=${searchValue}`);
                 setUserList(response.data);
             } catch (error) {
                 console.error('Error fetching user data: ', error);
             }
+            setLoading(false);
         };
 
         fetchData();
@@ -63,7 +66,11 @@ export const Home = () => {
         <ContainerHome>
             <FormRegister user={state.user} updateField={(event) => updateField(event)} save={save} />
             <InputSearch type="text" onSelectionChange={handleSearchChange} />
-            <TableUsers list={userList} />
+            {loading ? (
+                <Loading />
+            ) : (
+                <TableUsers list={userList} />
+            )}
         </ContainerHome>
     );
 };
