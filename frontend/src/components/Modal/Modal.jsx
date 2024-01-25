@@ -1,33 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { ButtonClose, Title, TableRoute } from '../../components';
 
 export const Modal = ({ isOpen, onClose }) => {
-    const Test = {
-        "optimizedRoute": [
-            {
-                "id": 15,
-                "name": "Goid Val",
-                "latitude": -32.788447,
-                "longitude": -54.654066
-            },
-            {
-                "id": 16,
-                "name": "Baile Val",
-                "latitude": -32.788447,
-                "longitude": -54.654066
+    const [routeData, setRouteData] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:3001/clients/route');
+                setRouteData(response.data);
+            } catch (error) {
+                console.error('Error to found data:', error);
             }
-        ],
-        "minDistance": 4022.822803401694
-    }
+        };
+
+        fetchData();
+    }, []);
+    
     return (
         <ModalWrapper isOpen={isOpen}>
             <ModalContent>
                 <ButtonClose onClose={onClose}></ButtonClose>
                 <Title size={"form"}>Shortest Service Route</Title>
-                <AboutContent>Travelled distance: {Test.minDistance.toFixed(2)} Km</AboutContent>
+                <AboutContent>Travelled distance: {routeData?.minDistance ? routeData.minDistance.toFixed(2) : 'Not Found'} Km</AboutContent>
                 <TableContainer>
-                    <TableRoute list={Test.optimizedRoute}></TableRoute>
+                    <TableRoute list={routeData?.optimizedRoute || []}></TableRoute>
                 </TableContainer>
             </ModalContent>
         </ModalWrapper>
