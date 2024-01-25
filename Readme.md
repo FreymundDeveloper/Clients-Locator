@@ -21,9 +21,9 @@ The route is linked to the address "localhost:3001/products ...". The backend ru
 
 * Get: /clients/route - Performs TSP route mapping;
 
-* Post: /clients - Body: { "name": "string", "email": "string","latitude": "number", "longitude": "number", "phone": "number" };
+* Post: /clients - Body: { "name": "string", "email": "string","latitude": "number", "longitude": "number", "phone": "string" };
 
-* Delete: /clients/:id - Parms: { id };
+* Delete: /clients/:id - Parameter: { id };
 
 ## Running the app
 
